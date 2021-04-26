@@ -1,0 +1,27 @@
+body{
+}
+.uno {
+    width: 100vw;
+    border-color: black;
+    border-style: solid;
+    background-color:cornflowerblue;
+    padding: 0;
+    margin: 0;
+}
+.mensaje{
+    padding:1px 1px 1px 1px;
+    margin: 0.5em;
+    padding-left: 10px;
+    background-color:white;
+    border-color: yellow;
+    border-style: solid;
+    font-weight: bold;
+}
+.dos{
+    width: 100vw;
+    background-color: chocolate;
+}
+.comentario{
+    color: white;
+    border-bottom: 3px solid green;
+}

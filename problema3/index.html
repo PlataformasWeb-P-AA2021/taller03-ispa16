@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Paises</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  </head>
+  <body >
+    <div class="p-5 text-center bg-light">
+      <h1 class="mb-3">Paises</h1>
+      <h4 class="mb-3">Informacion de paises</h4>
+      <button class="btn btn-primary" type="submit" id="obtenerInformacion">Obtener información</button>
+      <button class="btn btn-primary" type="submit" id="limpiarInformacion">Limpiar información</button>
+      
+      <div class="accordion" id="accordionExample">
+        <p id="mensajeFinal">
+        </p>
+      </div>
+    </div>
+    
+      
+  </body>
+  <script>
+    $(document).ready(function() {
+      var url = "https://pkgstore.datahub.io/core/country-codes/country-codes_json/data/616b1fb83cbfd4eb6d9e7d52924bb00a/country-codes_json.json";
+      $( "#obtenerInformacion" ).click(function() {
+            $.ajax({
+              dataType: 'json',
+              url: url 
+            }).then(function(data) {
+              for(var i=0; i<data.length; i++){
+                console.log(data[i]);
+                console.log(data[i].Capital);
+                console.log(data[i]['CLDR display name']);
+                $('#mensajeFinal').append('<div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+data[i]["CLDR display name"]+'</button></h2><div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body"><strong>Capital city:</strong> '+data[i].Capital+'<br>'+'<strong>Codes from the U.S. standard FIPS PUB 10-4:</strong> '+data[i].FIPS+'<br>'+'<strong>Codes assigned by the Fédération Internationale de Football Association:</strong> '+data[i].FIFA+'<br>'+'<strong>Continent from Geonames:</strong> '+data[i]['Region Name']+'<br>'+'<strong>Languages from Geonames:</strong> '+data[i].Languages+'<br>'+'<strong>Geoname ID:</strong> '+data[i]["Geoname ID"]+'<br>'+'<strong>Distinguishing signs of vehicles in international traffic:</strong> '+data[i].DS+'<br>'+'</div></div></div>');
+              }
+            })      
+      });
+      
+      $( "#limpiarInformacion" ).click(function() {
+          $('#mensajeFinal').empty();
+      });
+    });
+  </script>
+</html>
+
+
+
